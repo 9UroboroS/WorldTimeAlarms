@@ -11,7 +11,7 @@
 ; ============================================================================
 
 #define MyAppName "World Time & Alarms"
-#define MyAppVersion "1.0.16"
+#define MyAppVersion "1.0.17"
 #define MyAppPublisher "World Time & Alarms"
 #define MyAppURL "https://github.com/"
 #define MyAppExeName "WorldTimeAlarms.exe"
@@ -477,6 +477,7 @@ begin
 	MigrateLegacyDataIfNeeded();
   end;
 end;
+
 
 
 
