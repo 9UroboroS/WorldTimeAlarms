@@ -6,6 +6,8 @@
 [Oo]bj/
 
 InstallerOutput/
+Installer/Redist/*.exe
+Installer/Redist/*.msi
 
 *.user
 *.suo
