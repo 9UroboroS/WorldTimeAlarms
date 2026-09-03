@@ -1,0 +1,235 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- MainWindow -->
+    <system:String x:Key="Str_AppTitle">World Time &amp; Alarms</system:String>
+    <system:String x:Key="Str_LocalZoneLabel">Zona horaria local:</system:String>
+    <system:String x:Key="Str_Notifications">Notificaciones</system:String>
+    <system:String x:Key="Str_ShowLabel">Mostrar:</system:String>
+    <system:String x:Key="Str_FilterLabel">Filtrar:</system:String>
+    <system:String x:Key="Str_NoNotifications">No hay notificaciones por ahora.</system:String>
+    <system:String x:Key="Str_NotificationsHint">Avisos de alarmas cercanas y estado de actualización de usos horarios</system:String>
+    <system:String x:Key="Str_LastNotification">Última notificación</system:String>
+    <system:String x:Key="Str_NoNews">Sin novedades</system:String>
+    <system:String x:Key="Str_LocalTime">HORA LOCAL</system:String>
+    <system:String x:Key="Str_ActiveAlarms">ALARMAS ACTIVAS</system:String>
+    <system:String x:Key="Str_Attended">Atendida</system:String>
+    <system:String x:Key="Str_Snooze">Posponer</system:String>
+    <system:String x:Key="Str_NoAlarms">No hay alarmas configuradas.</system:String>
+    <system:String x:Key="Str_NewAlarm">NUEVA ALARMA</system:String>
+    <system:String x:Key="Str_Date">Fecha</system:String>
+    <system:String x:Key="Str_TimeZone">Zona horaria</system:String>
+    <system:String x:Key="Str_Note">Nota (opcional)</system:String>
+    <system:String x:Key="Str_WebLink">Enlace web (opcional)</system:String>
+    <system:String x:Key="Str_SaveAlarm">Guardar Alarma</system:String>
+    <system:String x:Key="Str_WorldClocks">RELOJES</system:String>
+    <system:String x:Key="Str_WorldClocksSub">MUNDIALES</system:String>
+    <system:String x:Key="Str_Add">Agregar</system:String>
+
+    <!-- SettingsWindow -->
+    <system:String x:Key="Str_SettingsTitle">Configuración</system:String>
+    <system:String x:Key="Str_SettingsSubtitle">Personaliza el comportamiento de la aplicación.</system:String>
+    <system:String x:Key="Str_About">Acerca de</system:String>
+    <system:String x:Key="Str_Close">Cerrar</system:String>
+    <system:String x:Key="Str_SectionClock">RELOJ</system:String>
+    <system:String x:Key="Str_LocalTimeZoneLabel">Zona horaria local</system:String>
+    <system:String x:Key="Str_SectionSystem">SISTEMA</system:String>
+    <system:String x:Key="Str_StartWithWindows">Iniciar con Windows</system:String>
+    <system:String x:Key="Str_StartWithWindowsHint">Abre la app automáticamente al iniciar sesión.</system:String>
+    <system:String x:Key="Str_MinimizeOnClose">Minimizar al cerrar</system:String>
+    <system:String x:Key="Str_MinimizeOnCloseHint">Oculta la ventana en lugar de cerrar la aplicación.</system:String>
+    <system:String x:Key="Str_Language">Idioma</system:String>
+    <system:String x:Key="Str_LanguageHint">Cambia el idioma de la interfaz de la aplicación.</system:String>
+    <system:String x:Key="Str_CheckUpdates">Actualizaciones</system:String>
+    <system:String x:Key="Str_CheckUpdatesHint">Busca nuevas versiones del programa y actualiza sin desinstalar.</system:String>
+    <system:String x:Key="Str_CheckNow">Buscar ahora</system:String>
+    <system:String x:Key="Str_UpdateNoUpdates">Ya tienes la versión más reciente ({0}).</system:String>
+    <system:String x:Key="Str_UpdateAvailablePrompt">Hay una nueva versión disponible: {0}. ¿Quieres descargar e instalar la actualización ahora?</system:String>
+    <system:String x:Key="Str_UpdateInstallNotice">Se abrirá el instalador de actualización. La aplicación se cerrará para completar el proceso.</system:String>
+    <system:String x:Key="Str_UpdateOpenFailed">No se pudo abrir el instalador de actualización.</system:String>
+    <system:String x:Key="Str_UpdateCheckFailed">No se pudo comprobar si hay actualizaciones en este momento.</system:String>
+    <system:String x:Key="Str_SectionAlarms">ALARMAS</system:String>
+    <system:String x:Key="Str_Use24HourFormat">Usar hora militar</system:String>
+    <system:String x:Key="Str_Use24HourFormatHint">Activa formato 24 horas. Si lo desactivas, se mostrará AM/PM.</system:String>
+    <system:String x:Key="Str_SoundOnAlarm">Sonido al disparar alarma</system:String>
+    <system:String x:Key="Str_SoundOnAlarmHint">Reproduce un sonido del sistema cuando se activa una alarma.</system:String>
+    <system:String x:Key="Str_NotificationLimit">Límite de notificaciones guardadas</system:String>
+    <system:String x:Key="Str_NotificationLimitHint">Cantidad máxima de notificaciones que la app conservará entre reinicios.</system:String>
+    <system:String x:Key="Str_Cancel">Cancelar</system:String>
+    <system:String x:Key="Str_SaveChanges">Guardar cambios</system:String>
+
+    <!-- AboutWindow -->
+    <system:String x:Key="Str_AppVersion">Versión {0}</system:String>
+    <system:String x:Key="Str_AboutDescription">Una aplicación de escritorio para gestionar relojes mundiales y alarmas con precisión horaria real, pensada para quienes trabajan o se comunican entre distintas zonas horarias.</system:String>
+    <system:String x:Key="Str_Features">CARACTERÍSTICAS</system:String>
+    <system:String x:Key="Str_FeatureClocksTitle">Relojes mundiales personalizables</system:String>
+    <system:String x:Key="Str_FeatureClocksDesc">Agrega, edita y elimina relojes de cualquier zona horaria, con búsqueda por ciudad y favoritos anclados al inicio de la lista.</system:String>
+    <system:String x:Key="Str_FeatureAlarmsTitle">Alarmas entre zonas horarias</system:String>
+    <system:String x:Key="Str_FeatureAlarmsDesc">Crea alarmas en la zona horaria que elijas, con notas y enlaces opcionales, cuenta regresiva en tiempo real e indicadores de urgencia por color (verde, naranja, rojo).</system:String>
+    <system:String x:Key="Str_FeatureActionsTitle">Atender, posponer o descartar</system:String>
+    <system:String x:Key="Str_FeatureActionsDesc">Al dispararse una alarma, decide si la atendiste, la pospones por un tiempo adicional o la marcas como no atendida.</system:String>
+    <system:String x:Key="Str_FeatureHistoryTitle">Historial completo</system:String>
+    <system:String x:Key="Str_FeatureHistoryDesc">Consulta todas las alarmas pasadas con su estado final, filtra, ordena, exporta a JSON/CSV y reutiliza alarmas anteriores para crear nuevas rápidamente.</system:String>
+    <system:String x:Key="Str_FeatureNotifCenterTitle">Centro de notificaciones</system:String>
+    <system:String x:Key="Str_FeatureNotifCenterDesc">Avisos de alarmas próximas y del estado de la base horaria, con badge de no leídas, filtros por categoría y contador en la barra de tareas.</system:String>
+    <system:String x:Key="Str_FeatureTzdbTitle">Precisión horaria actualizada</system:String>
+    <system:String x:Key="Str_FeatureTzdbDesc">La base de datos de husos horarios (TZDB) se actualiza automáticamente en segundo plano para reflejar cambios de horario de verano y reglas de cada país.</system:String>
+    <system:String x:Key="Str_HowItWorks">CÓMO FUNCIONA</system:String>
+    <system:String x:Key="Str_HowItWorksStep1">1. Agrega los relojes de las ciudades que te interesan desde el panel principal.</system:String>
+    <system:String x:Key="Str_HowItWorksStep2">2. Crea una alarma eligiendo la zona horaria, hora, notas y enlace opcional.</system:String>
+    <system:String x:Key="Str_HowItWorksStep3">3. La app calculará automáticamente la cuenta regresiva y te avisará cuando falte poco.</system:String>
+    <system:String x:Key="Str_HowItWorksStep4">4. Al sonar la alarma, decide si la atendiste, la pospones o la ignoras.</system:String>
+    <system:String x:Key="Str_HowItWorksStep5">5. Consulta el Historial para ver el resultado de todas tus alarmas anteriores.</system:String>
+    <system:String x:Key="Str_Technology">TECNOLOGÍA</system:String>
+    <system:String x:Key="Str_TechnologyDesc">Desarrollado en .NET y WPF, con NodaTime para cálculos de zona horaria basados en la base de datos IANA (TZDB).</system:String>
+
+    <!-- AddClockWindow -->
+    <system:String x:Key="Str_AddClockTitleWindow">Reloj mundial</system:String>
+    <system:String x:Key="Str_AddClockTitle">Agregar reloj</system:String>
+    <system:String x:Key="Str_EditClockTitle">Editar reloj</system:String>
+    <system:String x:Key="Str_NameOrCity">Nombre o ciudad</system:String>
+    <system:String x:Key="Str_Save">Guardar</system:String>
+
+    <!-- AlarmNotificationWindow -->
+    <system:String x:Key="Str_AlarmTitle">Alarma</system:String>
+    <system:String x:Key="Str_NoteHeader">NOTA</system:String>
+    <system:String x:Key="Str_WebLinkHeader">ENLACE WEB</system:String>
+    <system:String x:Key="Str_SnoozeHeader">POSPONER</system:String>
+    <system:String x:Key="Str_5Min">5 min</system:String>
+    <system:String x:Key="Str_10Min">10 min</system:String>
+    <system:String x:Key="Str_15Min">15 min</system:String>
+    <system:String x:Key="Str_30Min">30 min</system:String>
+    <system:String x:Key="Str_Attend">Atendida</system:String>
+    <system:String x:Key="Str_Ignore">Ignorar</system:String>
+
+    <!-- ReuseAlarmWindow -->
+    <system:String x:Key="Str_ReuseAlarmTitleWindow">Reutilizar alarma</system:String>
+    <system:String x:Key="Str_ReuseAlarmTitle">Reutilizar alarma</system:String>
+    <system:String x:Key="Str_HistoryBase">Base del historial</system:String>
+    <system:String x:Key="Str_TimeHHMM">Hora (HH:MM)</system:String>
+
+    <!-- TzPickerControl -->
+    <system:String x:Key="Str_SelectZone">Selecciona una zona...</system:String>
+    <system:String x:Key="Str_SearchZone">Buscar zona horaria...</system:String>
+
+    <!-- HistoryWindow -->
+    <system:String x:Key="Str_HistoryTitleWindow">Historial de alarmas — World Time &amp; Alarms</system:String>
+    <system:String x:Key="Str_HistoryTitle">Historial de alarmas</system:String>
+    <system:String x:Key="Str_Loading">Cargando…</system:String>
+    <system:String x:Key="Str_CloseHistory">Cerrar historial</system:String>
+    <system:String x:Key="Str_FilterByState">Filtrar por estado</system:String>
+    <system:String x:Key="Str_AllStates">Todos los estados</system:String>
+    <system:String x:Key="Str_Attended_Plural">Atendidas</system:String>
+    <system:String x:Key="Str_NotAttended_Plural">No atendidas</system:String>
+    <system:String x:Key="Str_SortBy">Ordenar por</system:String>
+    <system:String x:Key="Str_MostRecent">Más recientes</system:String>
+    <system:String x:Key="Str_Oldest">Más antiguas</system:String>
+    <system:String x:Key="Str_State">Estado</system:String>
+    <system:String x:Key="Str_ClearHistory">Vaciar todo el historial</system:String>
+    <system:String x:Key="Str_Clear">Vaciar</system:String>
+    <system:String x:Key="Str_From">Desde</system:String>
+    <system:String x:Key="Str_To">Hasta</system:String>
+    <system:String x:Key="Str_ExportScope">Alcance de exportación</system:String>
+    <system:String x:Key="Str_CurrentPage">Página actual</system:String>
+    <system:String x:Key="Str_Selected">Seleccionadas</system:String>
+    <system:String x:Key="Str_AllResults">Todos los resultados</system:String>
+    <system:String x:Key="Str_ExportJson">Exportar JSON</system:String>
+    <system:String x:Key="Str_ExportCsv">Exportar CSV</system:String>
+    <system:String x:Key="Str_ToggleFavorite">Marcar / quitar favorita</system:String>
+    <system:String x:Key="Str_SelectToExport">Seleccionar para exportar</system:String>
+    <system:String x:Key="Str_ReuseThisAlarm">Reutilizar esta alarma editando sus datos</system:String>
+    <system:String x:Key="Str_Reuse">Reutilizar</system:String>
+    <system:String x:Key="Str_DuplicateWithEdit">Duplicar con edición</system:String>
+    <system:String x:Key="Str_Duplicate">Duplicar</system:String>
+    <system:String x:Key="Str_OpenWebLink">Abrir enlace web</system:String>
+    <system:String x:Key="Str_Link">Enlace</system:String>
+    <system:String x:Key="Str_CopyLinkTooltip">Copiar enlace al portapapeles</system:String>
+    <system:String x:Key="Str_CopyLink">Copiar enlace</system:String>
+    <system:String x:Key="Str_DeleteFromHistory">Eliminar del historial</system:String>
+    <system:String x:Key="Str_Delete">Eliminar</system:String>
+    <system:String x:Key="Str_ViewDetails">Ver detalles</system:String>
+    <system:String x:Key="Str_Finalized">Finalizada: </system:String>
+    <system:String x:Key="Str_NoHistoryEntries">No hay entradas en el historial todavía.</system:String>
+    <system:String x:Key="Str_Previous">Anterior</system:String>
+    <system:String x:Key="Str_Next">Siguiente</system:String>
+    <system:String x:Key="Str_PageInfo">Página {0} de {1}</system:String>
+    <system:String x:Key="Str_ResultSingular">1 resultado</system:String>
+    <system:String x:Key="Str_ResultsPlural">{0} resultados</system:String>
+    <system:String x:Key="Str_NoSavedEntries">Sin entradas guardadas</system:String>
+    <system:String x:Key="Str_AlarmInHistorySingular">{0} alarma en historial</system:String>
+    <system:String x:Key="Str_AlarmsInHistoryPlural">{0} alarmas en historial</system:String>
+    <system:String x:Key="Str_ClearHistoryConfirm">¿Vaciar todo el historial de alarmas?</system:String>
+    <system:String x:Key="Str_DeleteEntryConfirm">¿Eliminar esta entrada del historial?</system:String>
+    <system:String x:Key="Str_Confirm">Confirmar</system:String>
+    <system:String x:Key="Str_NoExportItems">No hay elementos para exportar con el alcance seleccionado.</system:String>
+    <system:String x:Key="Str_ExportHistory">Exportar historial</system:String>
+    <system:String x:Key="Str_InvalidLink">Enlace no válido</system:String>
+    <system:String x:Key="Str_CannotOpenLink">No se pudo abrir el enlace de esta alarma.</system:String>
+    <system:String x:Key="Str_CannotCopyLink">No se pudo copiar el enlace.</system:String>
+
+    <!-- Estado labels used in code-behind -->
+    <system:String x:Key="Str_StateAttended">ATENDIDA</system:String>
+    <system:String x:Key="Str_StateNotAttended">NO ATENDIDA</system:String>
+    <system:String x:Key="Str_StateSnoozed">POSPUESTA</system:String>
+    <system:String x:Key="Str_StateSnoozedMin">POSPUESTA {0} MIN</system:String>
+    <system:String x:Key="Str_StatePending">PENDIENTE</system:String>
+
+    <!-- Tray menu -->
+    <system:String x:Key="Str_TrayOpen">Abrir</system:String>
+    <system:String x:Key="Str_TrayExit">Salir</system:String>
+
+    <!-- Favorites tooltip -->
+    <system:String x:Key="Str_RemoveFavorite">Quitar de favoritos</system:String>
+    <system:String x:Key="Str_AddFavorite">Agregar a favoritos</system:String>
+
+    <!-- Countdown text -->
+    <system:String x:Key="Str_CountdownDaysHours">Faltan {0} d {1} h</system:String>
+    <system:String x:Key="Str_CountdownHoursMin">Faltan {0} h {1} min</system:String>
+    <system:String x:Key="Str_CountdownMinSec">Faltan {0} min {1} s</system:String>
+    <system:String x:Key="Str_CountdownSec">Faltan {0} s</system:String>
+
+    <!-- TZDB notifications -->
+    <system:String x:Key="Str_TzdbTitle">Usos horarios</system:String>
+    <system:String x:Key="Str_TzdbChecking">Comprobando si hay actualizaciones de la base horaria...</system:String>
+    <system:String x:Key="Str_TzdbDownloading">Descargando la actualización más reciente de usos horarios.</system:String>
+    <system:String x:Key="Str_TzdbDownloadFailed">No se pudo descargar la actualización. Se seguirá usando la base horaria disponible.</system:String>
+    <system:String x:Key="Str_TzdbActiveSource">Base horaria activa: {0}.</system:String>
+
+    <!-- Notification bar / main window controls -->
+    <system:String x:Key="Str_Settings">Configuración</system:String>
+    <system:String x:Key="Str_History">Historial</system:String>
+    <system:String x:Key="Str_NotificationsTooltip">Notificaciones</system:String>
+    <system:String x:Key="Str_ClearNotifications">Limpiar</system:String>
+    <system:String x:Key="Str_MarkAllRead">Leer todas</system:String>
+    <system:String x:Key="Str_Empty">Vaciar</system:String>
+    <system:String x:Key="Str_Unread">Sin leer</system:String>
+    <system:String x:Key="Str_All">Todas</system:String>
+    <system:String x:Key="Str_CategoryAlarms">Alarmas</system:String>
+    <system:String x:Key="Str_CategoryTzdb">TZDB</system:String>
+    <system:String x:Key="Str_DateSample">Lunes, 1 de enero de 2025</system:String>
+    <system:String x:Key="Str_MarkAttended">Marcar como atendida</system:String>
+    <system:String x:Key="Str_PostponeAlarm">Posponer alarma</system:String>
+    <system:String x:Key="Str_Postpone5">Posponer 5 min</system:String>
+    <system:String x:Key="Str_Postpone10">Posponer 10 min</system:String>
+    <system:String x:Key="Str_Postpone15">Posponer 15 min</system:String>
+    <system:String x:Key="Str_Postpone30">Posponer 30 min</system:String>
+    <system:String x:Key="Str_DeleteAlarm">Eliminar alarma</system:String>
+    <system:String x:Key="Str_TimeHHMMLabel">Hora (HH:MM)</system:String>
+
+    <!-- Validation messages -->
+    <system:String x:Key="Str_ValSelectDate">Por favor selecciona una fecha.</system:String>
+    <system:String x:Key="Str_ValInvalidTime">Hora invalida. Usa el formato HH:MM (ej. 07:30).</system:String>
+    <system:String x:Key="Str_ValInvalidLink">El enlace web debe ser una URL válida http o https.</system:String>
+    <system:String x:Key="Str_ValPastTime">La hora programada ya paso en la zona horaria seleccionada. Elige una fecha/hora futura.</system:String>
+
+    <!-- Upcoming alarm notification -->
+    <system:String x:Key="Str_UpcomingAlarm">Alarma próxima</system:String>
+    <system:String x:Key="Str_UpcomingAlarmNote">Próxima: {0}</system:String>
+    <system:String x:Key="Str_UpcomingAlarmMessage">Faltan {0} min para la alarma de {1}.</system:String>
+    <system:String x:Key="Str_AlarmFired">⏰ Alarma disparada</system:String>
+    <system:String x:Key="Str_MissedAlarmWhileOffTitle">⏰ Alarma perdida mientras el equipo estaba apagado</system:String>
+    <system:String x:Key="Str_MissedAlarmWhileOffMessage">Se perdió una alarma programada para {0} a las {1} ({2}).</system:String>
+    <system:String x:Key="Str_MissedAlarmWhileOffMessageWithNote">Se perdió una alarma programada para {0} a las {1} ({2}). Nota: {3}</system:String>
+    <system:String x:Key="Str_NotificationFullDate">{0} a las {1}</system:String>
+</ResourceDictionary>

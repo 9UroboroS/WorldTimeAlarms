@@ -1,0 +1,275 @@
+<UserControl x:Class="WorldTimeAlarms.TzPickerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WorldTimeAlarms"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+
+    <UserControl.Resources>
+        <local:StringHasTextToVisibilityConverter x:Key="StringHasTextToVisibilityConverter"/>
+        <!-- Colores heredados del padre; si no existen se usan estos fallbacks -->
+        <SolidColorBrush x:Key="BgCard"      Color="#1A1D27"/>
+        <SolidColorBrush x:Key="BgInput"     Color="#22263A"/>
+        <SolidColorBrush x:Key="AccentBlue"  Color="#4F8EF7"/>
+        <SolidColorBrush x:Key="AccentGlow"  Color="#2D5DC8"/>
+        <SolidColorBrush x:Key="TextPrimary" Color="#E8EAF6"/>
+        <SolidColorBrush x:Key="TextMuted"   Color="#6B7280"/>
+        <SolidColorBrush x:Key="BorderColor" Color="#2E3150"/>
+
+        <!-- ListBox -->
+        <Style x:Key="ZoneListBox" TargetType="ListBox">
+            <Setter Property="Background"      Value="{StaticResource BgInput}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding"         Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBox">
+                        <!-- CanContentScroll=True fijado localmente supera el estilo global False -->
+                        <ScrollViewer CanContentScroll="True"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Visible"
+                                      Focusable="False">
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Item de zona -->
+        <Style x:Key="ZoneItem" TargetType="ListBoxItem">
+            <Setter Property="Background"               Value="Transparent"/>
+            <Setter Property="Padding"                  Value="0"/>
+            <Setter Property="Margin"                   Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="bd" Background="{TemplateBinding Background}" Padding="0">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#2A2F47"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#1E3A6E"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>  <!-- recuadro selección + botón toggle -->
+        </Grid.RowDefinitions>
+
+        <!-- ── Recuadro de zona seleccionada + botón toggle ── -->
+        <Border Grid.Row="0"
+                x:Name="SelectorBorder"
+                Background="{StaticResource BgInput}"
+                BorderBrush="{StaticResource BorderColor}"
+                BorderThickness="1" CornerRadius="8"
+                Height="40" Cursor="Hand"
+                MouseLeftButtonUp="SelectedRow_Click">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <iconPacks:PackIconMaterial Kind="MapMarkerOutline" Width="14" Height="14"
+                                           Foreground="{StaticResource AccentBlue}"
+                                           Margin="12,0,8,0" VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Column="1" x:Name="TxtSelected"
+                           Text="{DynamicResource Str_SelectZone}"
+                           Foreground="{StaticResource TextPrimary}"
+                           FontSize="13"
+                           VerticalAlignment="Center"
+                           TextTrimming="CharacterEllipsis"
+                           ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+
+                <!-- Chevron toggle -->
+                <Button Grid.Column="2"
+                        x:Name="BtnTogglePanel"
+                        Width="36" Height="36" Padding="0"
+                        Background="Transparent" BorderThickness="0"
+                        Cursor="Hand" Click="BtnTogglePanel_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="Transparent">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <iconPacks:PackIconMaterial x:Name="ChevronIcon"
+                                               Kind="ChevronDown" Width="14" Height="14"
+                                               Foreground="{StaticResource TextMuted}"/>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- ── Panel desplegable como Popup — flota sobre TODA la UI ── -->
+        <Popup x:Name="DropPopup"
+               PlacementTarget="{Binding ElementName=SelectorBorder}"
+               Placement="Bottom"
+               AllowsTransparency="True"
+               StaysOpen="True"
+               IsOpen="False"
+               Width="{Binding ActualWidth, ElementName=SelectorBorder}">
+            <Border x:Name="DropPanel"
+                    Background="{StaticResource BgCard}"
+                    BorderBrush="{StaticResource BorderColor}"
+                    BorderThickness="1" CornerRadius="0,0,8,8"
+                    Padding="0,6,0,0"
+                    MaxHeight="280">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="16" ShadowDepth="4" Opacity="0.5" Direction="270"/>
+                </Border.Effect>
+            <StackPanel>
+
+                <!-- Buscador -->
+                <Border Background="{StaticResource BgInput}"
+                        BorderBrush="{StaticResource BorderColor}"
+                        BorderThickness="1" CornerRadius="6"
+                        Margin="6,0,6,6" Height="36">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <iconPacks:PackIconMaterial Kind="Magnify" Width="13" Height="13"
+                                                   Foreground="{StaticResource TextMuted}"
+                                                   Margin="8,0,5,0" VerticalAlignment="Center"/>
+
+                        <Grid Grid.Column="1">
+                            <TextBox x:Name="TxtSearch"
+                                     Background="Transparent"
+                                     Foreground="{StaticResource TextPrimary}"
+                                     BorderThickness="0" Padding="0"
+                                     FontSize="13"
+                                     CaretBrush="{StaticResource AccentBlue}"
+                                     VerticalContentAlignment="Center"
+                                     TextChanged="TxtSearch_TextChanged">
+                                <TextBox.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="0"/>
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+
+                            <TextBlock Text="{DynamicResource Str_SearchZone}"
+                                       Foreground="{StaticResource TextMuted}"
+                                       FontSize="13"
+                                       VerticalAlignment="Center"
+                                       IsHitTestVisible="False"
+                                       Visibility="{Binding Text, ElementName=TxtSearch, Converter={StaticResource StringHasTextToVisibilityConverter}, ConverterParameter=Invert}"/>
+                        </Grid>
+
+                        <Button Grid.Column="2" x:Name="BtnClearSearch"
+                                Width="26" Height="26" Padding="0"
+                                Background="Transparent" BorderThickness="0"
+                                Cursor="Hand"
+                                Visibility="{Binding Text, ElementName=TxtSearch, Converter={StaticResource StringHasTextToVisibilityConverter}}"
+                                Click="BtnClearSearch_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="Transparent">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <iconPacks:PackIconMaterial Kind="CloseCircle" Width="11" Height="11"
+                                                       Foreground="{StaticResource TextMuted}"/>
+                        </Button>
+                    </Grid>
+                </Border>
+
+                <!-- Lista de zonas -->
+                <Border Height="220"
+                        BorderBrush="{StaticResource BorderColor}"
+                        BorderThickness="0,1,0,0"
+                        ClipToBounds="True">
+                    <ListBox x:Name="LstZones"
+                             Style="{StaticResource ZoneListBox}"
+                             ItemContainerStyle="{StaticResource ZoneItem}"
+                             VirtualizingPanel.IsVirtualizing="True"
+                             VirtualizingPanel.VirtualizationMode="Recycling"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             PreviewMouseDown="LstZones_PreviewMouseDown"
+                             PreviewMouseUp="LstZones_PreviewMouseUp"
+                             SelectionChanged="LstZones_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="10,0" Height="44"
+                                      ToolTip="{Binding DisplayName}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Estrella si es favorito -->
+                                    <iconPacks:PackIconMaterial Grid.Column="0"
+                                        Kind="Star" Width="12" Height="12"
+                                        VerticalAlignment="Center" Margin="0,0,8,0"
+                                        Visibility="{Binding StarVisibility}">
+                                        <iconPacks:PackIconMaterial.Foreground>
+                                            <SolidColorBrush Color="#FBBF24"/>
+                                        </iconPacks:PackIconMaterial.Foreground>
+                                    </iconPacks:PackIconMaterial>
+
+                                    <!-- Nombre + ciudades -->
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding DisplayName}"
+                                                   Foreground="{StaticResource TextPrimary}"
+                                                   FontSize="12"
+                                                   TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding CityHint}"
+                                                   Visibility="{Binding CityHintVisibility}"
+                                                   Foreground="#6B7280"
+                                                   FontSize="10"
+                                                   TextTrimming="CharacterEllipsis"/>
+                                    </StackPanel>
+
+                                    <!-- Toggle favorito -->
+                                    <Button Grid.Column="2"
+                                            Width="28" Height="28" Padding="0"
+                                            Background="Transparent" BorderThickness="0"
+                                            Cursor="Hand"
+                                            Tag="{Binding}"
+                                            ToolTip="{Binding FavTooltip}"
+                                            Click="BtnToggleFavorite_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="bd" Background="Transparent" CornerRadius="6">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="bd" Property="Background" Value="#2A2F47"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <iconPacks:PackIconMaterial Kind="{Binding StarIcon}"
+                                                                   Width="13" Height="13"
+                                                                   Foreground="{Binding StarColor}"/>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+
+            </StackPanel>
+        </Border>
+        </Popup>
+    </Grid>
+</UserControl>

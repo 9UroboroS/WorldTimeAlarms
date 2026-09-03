@@ -1,0 +1,278 @@
+<Window x:Class="WorldTimeAlarms.ReuseAlarmWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:WorldTimeAlarms"
+        Title="{DynamicResource Str_ReuseAlarmTitleWindow}"
+        Icon="/app_logo.ico"
+        Width="500"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="BgCard" Color="#1A1D27"/>
+        <SolidColorBrush x:Key="BgInput" Color="#22263A"/>
+        <SolidColorBrush x:Key="AccentBlue" Color="#4F8EF7"/>
+        <SolidColorBrush x:Key="AccentGlow" Color="#2D5DC8"/>
+        <SolidColorBrush x:Key="TextPrimary" Color="#E8EAF6"/>
+        <SolidColorBrush x:Key="TextMuted" Color="#9CA3AF"/>
+        <SolidColorBrush x:Key="BorderColor" Color="#2E3150"/>
+
+        <Style x:Key="DarkTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource BgInput}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="CaretBrush" Value="{StaticResource AccentBlue}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="DarkTextArea" TargetType="TextBox" BasedOn="{StaticResource DarkTextBox}">
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="MinHeight" Value="84"/>
+            <Setter Property="MaxHeight" Value="150"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="AcceptsReturn" Value="True"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+        </Style>
+
+        <Style x:Key="DarkDatePicker" TargetType="DatePicker">
+            <Setter Property="Background"      Value="{StaticResource BgInput}"/>
+            <Setter Property="Foreground"      Value="{StaticResource TextPrimary}"/>
+            <Setter Property="BorderBrush"     Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height"          Value="38"/>
+            <Setter Property="FontSize"        Value="14"/>
+            <Setter Property="CalendarStyle">
+                <Setter.Value>
+                    <Style TargetType="Calendar">
+                        <Setter Property="Background" Value="{StaticResource BgCard}"/>
+                        <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+                        <Setter Property="FontSize"   Value="13"/>
+                        <Setter Property="CalendarDayButtonStyle">
+                            <Setter.Value>
+                                <Style TargetType="CalendarDayButton">
+                                    <Setter Property="FontSize"   Value="13"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="MinWidth"   Value="32"/>
+                                    <Setter Property="MinHeight"  Value="28"/>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CalendarButtonStyle">
+                            <Setter.Value>
+                                <Style TargetType="CalendarButton">
+                                    <Setter Property="FontSize"   Value="13"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DatePicker">
+                        <Border x:Name="bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+                            <Grid Margin="10,0,4,0" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <DatePickerTextBox x:Name="PART_TextBox"
+                                                   Grid.Column="0"
+                                                   Background="Transparent"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   BorderThickness="0"
+                                                   Padding="0"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="{TemplateBinding FontSize}"/>
+                                <Button x:Name="PART_Button"
+                                        Grid.Column="1"
+                                        Width="30" Height="30"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Cursor="Hand">
+                                    <iconPacks:PackIconMaterial Kind="CalendarMonthOutline"
+                                                               Width="16" Height="16"
+                                                               Foreground="{StaticResource TextMuted}"/>
+                                </Button>
+                                <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="BorderBrush" Value="{StaticResource AccentBlue}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BtnPrimary" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource AccentBlue}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" Background="{TemplateBinding Background}" CornerRadius="10" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                              TextElement.Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#6AA3FF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource AccentGlow}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BtnSecondary" TargetType="Button" BasedOn="{StaticResource BtnPrimary}">
+            <Setter Property="Background" Value="#2B334A"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="16"
+            Background="{StaticResource BgCard}"
+            BorderBrush="{StaticResource BorderColor}"
+            BorderThickness="1"
+            Margin="12">
+        <Border.Effect>
+            <DropShadowEffect Color="#000000" BlurRadius="30" ShadowDepth="4" Opacity="0.6"/>
+        </Border.Effect>
+
+        <Grid Margin="24,20,24,24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <iconPacks:PackIconMaterial Kind="BellPlus"
+                                               Width="18" Height="18"
+                                               Foreground="{StaticResource AccentBlue}"
+                                               Margin="0,0,10,0"/>
+                    <TextBlock Text="{DynamicResource Str_ReuseAlarmTitle}"
+                               Foreground="{StaticResource TextPrimary}"
+                               FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Button Grid.Column="1"
+                        Width="28" Height="28" Padding="0"
+                        Background="Transparent" BorderThickness="0"
+                        Cursor="Hand" Click="BtnClose_Click">
+                    <iconPacks:PackIconMaterial Kind="Close" Width="14" Height="14" Foreground="{StaticResource TextMuted}"/>
+                </Button>
+            </Grid>
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <Border Background="#20263A" BorderBrush="{StaticResource BorderColor}" BorderThickness="1" CornerRadius="12" Padding="14" Margin="0,0,0,16">
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Str_HistoryBase}"
+                                       Foreground="{StaticResource TextMuted}"
+                                       FontSize="12"/>
+                            <TextBlock x:Name="TxtSourceSummary"
+                                       Foreground="{StaticResource TextPrimary}"
+                                       FontSize="13"
+                                       Margin="0,6,0,0"
+                                       TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel Margin="0,0,0,14">
+                        <TextBlock Text="{DynamicResource Str_Date}" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,4"/>
+                        <DatePicker x:Name="DpkAlarmDate" Style="{StaticResource DarkDatePicker}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,14">
+                        <TextBlock x:Name="TxtAlarmTimeLabel" Text="{DynamicResource Str_TimeHHMM}" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,4"/>
+                        <TextBox x:Name="TxtAlarmTime"
+                                 Style="{StaticResource DarkTextBox}"
+                                 MaxLength="8"
+                                 TextChanged="TxtAlarmTime_TextChanged"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,14">
+                        <TextBlock Text="{DynamicResource Str_TimeZone}" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,4"/>
+                        <local:TzPickerControl x:Name="AlarmTzPicker" Height="230"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,14">
+                        <TextBlock Text="{DynamicResource Str_Note}" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,4"/>
+                        <TextBox x:Name="TxtAlarmNote" Style="{StaticResource DarkTextArea}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,14">
+                        <TextBlock Text="{DynamicResource Str_WebLink}" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,4"/>
+                        <TextBox x:Name="TxtAlarmLink" Style="{StaticResource DarkTextBox}" MaxLength="500"/>
+                    </StackPanel>
+
+                    <TextBlock x:Name="TxtValidation"
+                               Foreground="#F87171"
+                               FontSize="12"
+                               Visibility="Collapsed"
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <Grid Grid.Row="2" Margin="0,18,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Style="{StaticResource BtnSecondary}"
+                        Margin="0,0,8,0"
+                        Click="BtnClose_Click">
+                    <TextBlock Text="{DynamicResource Str_Cancel}"/>
+                </Button>
+
+                <Button Grid.Column="1"
+                        Style="{StaticResource BtnPrimary}"
+                        Margin="8,0,0,0"
+                        Click="BtnSave_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="BellPlus" Width="15" Height="15"
+                                                   Foreground="White" Margin="0,0,8,0"
+                                                   VerticalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource Str_SaveAlarm}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
